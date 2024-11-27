@@ -110,121 +110,125 @@ export default function Home() {
 
   return (
     <div>
-      <div className="container py-8">
-        <Card className="relative p-8 mb-16 overflow-hidden">
-          {/* Background Effects */}
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/30 via-background to-background" />
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-emerald-400/20 via-transparent to-transparent" />
-            <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-emerald-900/20 via-transparent to-transparent" />
-            <div className="absolute inset-0 backdrop-blur-3xl" />
+      <Card className="relative p-8 mb-16 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/30 via-background to-background" />
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-emerald-400/20 via-transparent to-transparent" />
+          <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-emerald-900/20 via-transparent to-transparent" />
+          <div className="absolute inset-0 backdrop-blur-3xl" />
 
-            {/* Animated Glow Effects */}
-            <div className="absolute -top-24 -left-24 w-96 h-96 bg-emerald-500/30 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-emerald-700/20 rounded-full blur-3xl animate-pulse delay-1000" />
+          {/* Animated Glow Effects */}
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-emerald-500/30 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-emerald-700/20 rounded-full blur-3xl animate-pulse delay-1000" />
 
-            {/* Stadium Image */}
-            <Image
-              src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-              alt="Estadio"
-              fill
-              className="object-cover opacity-10 mix-blend-overlay"
-            />
+          {/* Stadium Image */}
+          <Image
+            src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+            alt="Estadio"
+            fill
+            className="object-cover opacity-10 mix-blend-overlay"
+          />
+        </div>
+
+        <div className="relative">
+          <div className="text-center mb-12">
+            <div className="inline-block">
+              <h2
+                hidden
+                className="text-4xl md:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-emerald-300"
+              >
+                Explora el Fútbol Chileno
+              </h2>
+              <div className="h-1 w-1/3 mx-auto bg-gradient-to-r from-emerald-500 to-emerald-300 rounded-full" />
+            </div>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mt-6 flex flex-col items-center">
+              <img
+                src="img/logo.png"
+                className="w-[100px] pb-5 transition-transform duration-300 hover:scale-110 hover:shadow-lg"
+                alt=""
+              />
+              Descubre estadísticas, resultados y toda la información del
+              fútbol nacional. Para comenzar, selecciona un torneo:
+            </p>
           </div>
 
-          <div className="relative">
-            <div className="text-center mb-12">
-              <div className="inline-block">
-                <h2
-                  hidden
-                  className="text-4xl md:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-emerald-300"
-                >
-                  Explora el Fútbol Chileno
-                </h2>
-                <div className="h-1 w-1/3 mx-auto bg-gradient-to-r from-emerald-500 to-emerald-300 rounded-full" />
+          <div className="relative z-10">
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <div className="w-72">
+                <SearchableSelect
+                  value={selectedTournament}
+                  onValueChange={handleTournamentChange}
+                  placeholder="Seleccionar Torneo"
+                  items={tournaments.map((t) => ({
+                    value: t.id.toString(),
+                    label: `${t.name} - ${t.season}`,
+                    searchTerms: [t.name, t.season, t.year],
+                  }))}
+                />
               </div>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mt-6">
-                Descubre estadísticas, resultados y toda la información del
-                fútbol nacional. Para comenzar, selecciona un torneo:
-              </p>
-            </div>
 
-            <div className="relative z-10">
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                <div className="w-72">
+              {selectedTournament && (
+                <div className="w-72 animate-in fade-in slide-in-from-top-4 duration-500">
                   <SearchableSelect
-                    value={selectedTournament}
-                    onValueChange={handleTournamentChange}
-                    placeholder="Seleccionar Torneo"
-                    items={tournaments.map((t) => ({
+                    value={selectedTeam}
+                    onValueChange={handleTeamChange}
+                    placeholder="Seleccionar Equipo"
+                    items={filteredTeams.map((t) => ({
                       value: t.id.toString(),
-                      label: `${t.name} - ${t.season}`,
-                      searchTerms: [t.name, t.season, t.year],
+                      label: t.name,
+                      searchTerms: [t.name],
                     }))}
                   />
                 </div>
-
-                {selectedTournament && (
-                  <div className="w-72 animate-in fade-in slide-in-from-top-4 duration-500">
-                    <SearchableSelect
-                      value={selectedTeam}
-                      onValueChange={handleTeamChange}
-                      placeholder="Seleccionar Equipo"
-                      items={filteredTeams.map((t) => ({
-                        value: t.id.toString(),
-                        label: t.name,
-                        searchTerms: [t.name],
-                      }))}
-                    />
-                  </div>
-                )}
-
-                {selectedTeam && (
-                  <div className="w-72 animate-in fade-in slide-in-from-top-4 duration-500">
-                    <SearchableSelect
-                      value={selectedPlayer}
-                      onValueChange={setSelectedPlayer}
-                      placeholder="Seleccionar Jugador"
-                      items={filteredPlayers.map((p) => ({
-                        value: p.id.toString(),
-                        label: p.name,
-                        searchTerms: [p.name, p.position],
-                      }))}
-                    />
-                  </div>
-                )}
-              </div>
-
-              {!selectedTournament && (
-                <div className="mt-8 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Accesos Rápidos
-                  </p>
-                  <div className="flex flex-wrap justify-center gap-4">
-                    {tournaments.slice(0, 3).map((tournament) => (
-                      <button
-                        key={tournament.id}
-                        onClick={() =>
-                          handleTournamentChange(tournament.id.toString())
-                        }
-                        className="px-4 py-2 rounded-full bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-500 text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20"
-                      >
-                        {tournament.name} - {tournament.season}
-                      </button>
-                    ))}
-                  </div>
-                </div>
               )}
 
-              {getSelectedData() && (
-                <div className="mt-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <SearchResults data={getSelectedData()} />
+              {selectedTeam && (
+                <div className="w-72 animate-in fade-in slide-in-from-top-4 duration-500">
+                  <SearchableSelect
+                    value={selectedPlayer}
+                    onValueChange={setSelectedPlayer}
+                    placeholder="Seleccionar Jugador"
+                    items={filteredPlayers.map((p) => ({
+                      value: p.id.toString(),
+                      label: p.name,
+                      searchTerms: [p.name, p.position],
+                    }))}
+                  />
                 </div>
               )}
             </div>
-          </div>
-        </Card>
 
+            {!selectedTournament && (
+              <div className="mt-8 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <p className="text-sm text-muted-foreground mb-4">
+                  Accesos Rápidos
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  {tournaments.slice(0, 3).map((tournament) => (
+                    <button
+                      key={tournament.id}
+                      onClick={() =>
+                        handleTournamentChange(tournament.id.toString())
+                      }
+                      className="px-4 py-2 rounded-full bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-500 text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20"
+                    >
+                      {tournament.name} - {tournament.season}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {getSelectedData() && (
+              <div className="mt-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <SearchResults data={getSelectedData()} />
+              </div>
+            )}
+          </div>
+        </div>
+      </Card>
+      <div className="container py-8">
         <TeamsSection />
       </div>
     </div>

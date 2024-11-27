@@ -31,7 +31,7 @@ export function Footer() {
                   Equipos
                 </a>
               </li>
-              <li>
+              <li hidden>
                 <a href="/jugadores" className="text-muted-foreground hover:text-primary">
                   Jugadores
                 </a>

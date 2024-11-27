@@ -15,17 +15,18 @@ export function MainNav() {
         <div className="flex h-full items-center justify-between">
           {/* Left section - Logo and Navigation */}
           <div className="flex items-center gap-6">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="flex items-center gap-2.5 font-bold text-xl group"
             >
               <div className="relative">
                 <div className="absolute -inset-1 bg-emerald-600/20 rounded-full blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <Trophy className="w-6 h-6 relative text-emerald-600" />
+                <img
+                  src="img/logo.png"
+                  className="w-[60px]"
+                  alt=""
+                />
               </div>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-emerald-500 font-extrabold">
-                FutbolDigital.cl
-              </span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-6">
@@ -37,10 +38,12 @@ export function MainNav() {
                 <Medal className="w-4 h-4 mr-2" />
                 Torneos
               </TournamentsDropdown>
-              <PlayersDropdown>
-                <User2 className="w-4 h-4 mr-2" />
-                Jugadores
-              </PlayersDropdown>
+              <div hidden>
+                <PlayersDropdown>
+                  <User2 className="w-4 h-4 mr-2" />
+                  Jugadores
+                </PlayersDropdown>
+              </div>
             </nav>
           </div>
 
@@ -60,7 +63,7 @@ export function MainNav() {
                 </Button>
               </Link>
             </div>
-            <Button 
+            <Button
               className="hidden md:inline-flex bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white border-0 shadow-md hover:shadow-lg transition-all duration-200"
             >
               <PenTool className="w-4 h-4 mr-2" />
