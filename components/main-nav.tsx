@@ -49,6 +49,7 @@ export function MainNav() {
 
           {/* Right section - Actions */}
           <div className="flex items-center gap-6">
+            {/*
             <div className="hidden md:flex items-center gap-4">
               <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                 <Button variant="ghost" size="icon">
@@ -63,6 +64,7 @@ export function MainNav() {
                 </Button>
               </Link>
             </div>
+            */}
             <Button
               className="hidden md:inline-flex bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white border-0 shadow-md hover:shadow-lg transition-all duration-200"
             >
