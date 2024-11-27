@@ -183,7 +183,7 @@ export default function Home() {
                 </div>
               )}
 
-              {selectedTeam && (
+              {selectedTeam && false && (
                 <div className="w-72 animate-in fade-in slide-in-from-top-4 duration-500">
                   <SearchableSelect
                     value={selectedPlayer}
@@ -211,7 +211,7 @@ export default function Home() {
                       onClick={() =>
                         handleTournamentChange(tournament.id.toString())
                       }
-                      className="px-4 py-2 rounded-full bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-500 text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20"
+                      className="px-4 py-2 rounded-full bg-emerald-600/10 text-emerald-500 text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-emerald-500/20"
                     >
                       {tournament.name} - {tournament.season}
                     </button>
