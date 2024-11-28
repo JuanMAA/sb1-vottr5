@@ -50,7 +50,7 @@ const players = [
   },
 ];
 
-export default function HomeComponent() {
+export default function HomeComponent({ teams }) {
   const [selectedTournament, setSelectedTournament] = useState<string>('');
   const [selectedTeam, setSelectedTeam] = useState<string>('');
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
