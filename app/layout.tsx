@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer";
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'FutbolDigital.cl',
+  title: 'Futbol Digital Chile',
   description: 'La plataforma digital definitiva del fútbol chileno',
 };
 

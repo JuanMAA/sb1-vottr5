@@ -7,6 +7,8 @@ import { tournaments } from '@/lib/tournament-data';
 import { SearchResults } from '@/components/search-results';
 import Image from 'next/image';
 import { TeamsSection } from '@/components/sections/teams-section';
+import { createClient } from '@/utils/supabase/server'
+import { cookies } from 'next/headers'
 
 const teams = [
   { id: 1, name: 'Colo-Colo', stadium: 'Estadio Monumental', founded: '1925' },
