@@ -8,7 +8,7 @@ import { TournamentsDropdown } from "@/components/tournaments-dropdown";
 import { PlayersDropdown } from "@/components/players-dropdown";
 import { Trophy, Users, Medal, User2, PenTool, Youtube, Instagram } from "lucide-react";
 
-export function MainNav() {
+export function MainNav({ teams }) {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container h-16">
@@ -30,7 +30,7 @@ export function MainNav() {
             </Link>
 
             <nav className="hidden md:flex items-center gap-6">
-              <TeamsDropdown>
+              <TeamsDropdown teams={teams}>
                 <Users className="w-4 h-4 mr-2" />
                 Equipos
               </TeamsDropdown>
