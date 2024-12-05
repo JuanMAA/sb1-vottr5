@@ -1,25 +1,40 @@
-// app/page.tsx
 import HomeComponent from '@/components/home';
 import { createClient } from '@/utils/supabase/server';
 import { MainNav } from "@/components/main-nav";
 import { Footer } from "@/components/footer";
 
+const TournamentType = {
+  COPA_CHILE: 'copa_chile',
+  TORNEO_NACIONAL: 'torneo_nacional',
+};
+
 export default async function Home() {
-  // Crea un cliente de Supabase sin depender de las cookies.
   const supabase = createClient();
 
-  let { data: teams, error } = await supabase
-    .from('team')
-    .select('name, logo, region');
+  const [{ data: teams, error: teamsError },
+    { data: ccList, error: ccListError },
+    { data: tnList, error: tnListError }] = await Promise.all([
+      supabase.from('team').select('name, logo, region'),
+      supabase.from('tournament').select('name, year').eq('tournament_type', TournamentType.COPA_CHILE),
+      supabase.from('tournament').select('name, year').eq('tournament_type', TournamentType.TORNEO_NACIONAL)
+    ]);
 
-  if (error) {
-    teams = [];
-  }
+  const hasError = teamsError || ccListError || tnListError;
+  const safeTeams = hasError ? [] : teams || [];
+  const safeCcList = hasError ? [] : ccList || [];
+  const safeTnList = hasError ? [] : tnList || [];
 
-  // Pasa los datos como props al componente de cliente.
-  return <>
-    <MainNav teams={teams} />
-    <HomeComponent teams={teams} />
-    <Footer />
-  </>;
+  return (
+    <>
+      <MainNav
+        teams={safeTeams}
+        ccList={safeCcList}
+        tnList={safeTnList} />
+      <HomeComponent
+        teams={safeTeams}
+        ccList={safeCcList}
+        tnList={safeTnList} />
+      <Footer />
+    </>
+  );
 }
