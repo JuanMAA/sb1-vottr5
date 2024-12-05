@@ -36,7 +36,11 @@ export function MainNav({ teams }) {
               </TeamsDropdown>
               <TournamentsDropdown>
                 <Medal className="w-4 h-4 mr-2" />
-                Torneos
+                Torneos Nacional
+              </TournamentsDropdown>
+              <TournamentsDropdown>
+                <Medal className="w-4 h-4 mr-2" />
+                Copa Chile
               </TournamentsDropdown>
               <div hidden>
                 <PlayersDropdown>
