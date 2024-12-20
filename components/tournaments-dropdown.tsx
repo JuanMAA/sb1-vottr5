@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import Link from 'next/link';
 
-const tournaments = [
+const tournamentsOld = [
   {
     id: 1,
     year: '24',
@@ -81,9 +81,10 @@ const tournaments = [
 
 interface TournamentsDropdownProps {
   children: React.ReactNode;
+  tournaments: any;
 }
 
-export function TournamentsDropdown({ children }: TournamentsDropdownProps) {
+export function TournamentsDropdown({ children, tournaments }: TournamentsDropdownProps) {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [filteredTournaments, setFilteredTournaments] =
     React.useState(tournaments);
@@ -94,9 +95,8 @@ export function TournamentsDropdown({ children }: TournamentsDropdownProps) {
 
     const filtered = tournaments.filter(
       (tournament) =>
-        tournament.year.includes(query) ||
-        tournament.season.toLowerCase().includes(query) ||
-        tournament.champion.toLowerCase().includes(query)
+        tournament?.year.includes(query) ||
+        tournament?.name.toLowerCase().includes(query)
     );
     setFilteredTournaments(filtered);
   };
@@ -134,10 +134,10 @@ export function TournamentsDropdown({ children }: TournamentsDropdownProps) {
                       </div>
                       <div className="min-w-0">
                         <div className="font-medium text-sm truncate group-hover:text-accent-foreground">
-                          {tournament.season} {tournament.year}
+                          {tournament.name}
                         </div>
                         <div className="text-xs text-muted-foreground truncate">
-                          {tournament.champion}
+                          {tournament.champion} Campeón
                         </div>
                       </div>
                     </a>

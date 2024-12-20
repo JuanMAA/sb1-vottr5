@@ -4,53 +4,10 @@
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { SearchableSelect } from '@/components/searchable-select';
-import { tournaments } from '@/lib/tournament-data';
 import Image from 'next/image';
 import { TeamsSection } from '@/components/sections/teams-section';
 
-const teams = [
-  { id: 1, name: 'Colo-Colo', stadium: 'Estadio Monumental', founded: '1925' },
-  { id: 2, name: 'Universidad de Chile', stadium: 'Estadio Nacional', founded: '1927' },
-  { id: 3, name: 'Universidad Católica', stadium: 'San Carlos de Apoquindo', founded: '1937' },
-  { id: 4, name: 'Cobreloa', stadium: 'Estadio Zorros del Desierto', founded: '1977' },
-  { id: 5, name: 'Huachipato', stadium: 'Estadio CAP', founded: '1947' },
-  { id: 6, name: 'Cobresal', stadium: 'Estadio El Cobre', founded: '1979' },
-];
-
-const players = [
-  {
-    id: 1,
-    name: 'Arturo Vidal',
-    teamId: 1,
-    position: 'Mediocampista',
-    number: '23',
-    nationality: 'Chileno',
-    birthdate: '1987-05-22',
-    stats: { matches: 132, goals: 32, assists: 45 },
-  },
-  {
-    id: 2,
-    name: 'Marcelo Díaz',
-    teamId: 2,
-    position: 'Mediocampista',
-    number: '21',
-    nationality: 'Chileno',
-    birthdate: '1986-12-30',
-    stats: { matches: 145, goals: 15, assists: 38 },
-  },
-  {
-    id: 3,
-    name: 'Fernando Zampedri',
-    teamId: 3,
-    position: 'Delantero',
-    number: '9',
-    nationality: 'Argentino',
-    birthdate: '1988-02-14',
-    stats: { matches: 98, goals: 67, assists: 12 },
-  },
-];
-
-export default function HomeComponent({ teams }) {
+export default function HomeComponent({ teams, tournaments, cups }) {
   const [selectedTournament, setSelectedTournament] = useState<string>('');
   const [selectedTeam, setSelectedTeam] = useState<string>('');
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
@@ -66,7 +23,7 @@ export default function HomeComponent({ teams }) {
     setSelectedPlayer('');
   };
 
-  const filteredTeams = teams;
+  const filteredTeams = teams.filter();
   const filteredPlayers = selectedTeam
     ? players.filter((player) => player.teamId === parseInt(selectedTeam))
     : [];
@@ -75,19 +32,19 @@ export default function HomeComponent({ teams }) {
     if (selectedPlayer) {
       return {
         type: 'player',
-        data: players.find((p) => p.id === parseInt(selectedPlayer)),
+        data: players.find((p) => p.name === selectedPlayer),
       };
     }
     if (selectedTeam) {
       return {
         type: 'team',
-        data: teams.find((t) => t.id === parseInt(selectedTeam)),
+        data: teams.find((t) => t.name === selectedTeam),
       };
     }
     if (selectedTournament) {
       return {
         type: 'tournament',
-        data: tournaments.find((t) => t.id === parseInt(selectedTournament)),
+        data: tournaments.find((t) => t.name === selectedTournament),
       };
     }
     return null;
@@ -146,7 +103,7 @@ export default function HomeComponent({ teams }) {
                   onValueChange={handleTournamentChange}
                   placeholder="Seleccionar Torneo"
                   items={tournaments.map((t) => ({
-                    value: t.id.toString(),
+                    value: t.name.toString(),
                     label: `${t.name} - ${t.season}`,
                     searchTerms: [t.name, t.season, t.year],
                   }))}
@@ -160,7 +117,7 @@ export default function HomeComponent({ teams }) {
                     onValueChange={handleTeamChange}
                     placeholder="Seleccionar Equipo"
                     items={filteredTeams.map((t) => ({
-                      value: t.id.toString(),
+                      value: t.name.toString(),
                       label: t.name,
                       searchTerms: [t.name],
                     }))}

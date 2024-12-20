@@ -8,7 +8,7 @@ import { TournamentsDropdown } from "@/components/tournaments-dropdown";
 import { PlayersDropdown } from "@/components/players-dropdown";
 import { Trophy, Users, Medal, User2, PenTool, Youtube, Instagram } from "lucide-react";
 
-export function MainNav({ teams }) {
+export function MainNav({ teams, tournaments, cups }) {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container h-16">
@@ -34,11 +34,11 @@ export function MainNav({ teams }) {
                 <Users className="w-4 h-4 mr-2" />
                 Equipos
               </TeamsDropdown>
-              <TournamentsDropdown>
+              <TournamentsDropdown tournaments={tournaments}>
                 <Medal className="w-4 h-4 mr-2" />
                 Torneos Nacional
               </TournamentsDropdown>
-              <TournamentsDropdown>
+              <TournamentsDropdown tournaments={cups}>
                 <Medal className="w-4 h-4 mr-2" />
                 Copa Chile
               </TournamentsDropdown>

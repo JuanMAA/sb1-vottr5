@@ -15,8 +15,8 @@ export default async function Home() {
     { data: ccList, error: ccListError },
     { data: tnList, error: tnListError }] = await Promise.all([
       supabase.from('team').select('name, logo, region'),
-      supabase.from('tournament').select('name, year').eq('tournament_type', TournamentType.COPA_CHILE),
-      supabase.from('tournament').select('name, year').eq('tournament_type', TournamentType.TORNEO_NACIONAL)
+      supabase.from('tournament').select('*').eq('tournament_type', TournamentType.COPA_CHILE),
+      supabase.from('tournament').select('*').eq('tournament_type', TournamentType.TORNEO_NACIONAL)
     ]);
 
   const hasError = teamsError || ccListError || tnListError;
@@ -28,12 +28,12 @@ export default async function Home() {
     <>
       <MainNav
         teams={safeTeams}
-        ccList={safeCcList}
-        tnList={safeTnList} />
+        cups={safeCcList}
+        tournaments={safeTnList} />
       <HomeComponent
         teams={safeTeams}
-        ccList={safeCcList}
-        tnList={safeTnList} />
+        cups={safeCcList}
+        tournaments={safeTnList} />
       <Footer />
     </>
   );

@@ -20,17 +20,19 @@ interface TeamsDropdownProps {
   teams: any;
 }
 
-export function TeamsDropdown({ children,teams }: TeamsDropdownProps) {
+export function TeamsDropdown({ children, teams }: TeamsDropdownProps) {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [filteredTeams, setFilteredTeams] = React.useState(teams);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
-    
+
+    console.log("teams", teams)
+
     const filtered = teams.filter(
-      team => team.name.toLowerCase().includes(query) || 
-              team.region.toLowerCase().includes(query)
+      team => team.name.toLowerCase()?.trim().includes(query) ||
+        team.region?.toLowerCase()?.trim().includes(query)
     );
     setFilteredTeams(filtered);
   };
@@ -81,8 +83,8 @@ export function TeamsDropdown({ children,teams }: TeamsDropdownProps) {
                   </NavigationMenuLink>
                 ))}
               </div>
-              <Link 
-                href="/equipos" 
+              <Link
+                href="/equipos"
                 className="flex items-center justify-between p-2 rounded-lg hover:bg-accent group w-full"
               >
                 <span className="text-sm font-medium">Ver todos los equipos</span>
