@@ -30,7 +30,7 @@ export function MainNav({ teams, tournaments, cups }) {
             </Link>
 
             <nav className="hidden md:flex items-center gap-6">
-              <TeamsDropdown teams={teams}>
+              <TeamsDropdown teams={teams} key="1">
                 <Users className="w-4 h-4 mr-2" />
                 Equipos
               </TeamsDropdown>
@@ -38,7 +38,7 @@ export function MainNav({ teams, tournaments, cups }) {
                 <Medal className="w-4 h-4 mr-2" />
                 Torneos Nacional
               </TournamentsDropdown>
-              <TournamentsDropdown tournaments={cups}>
+              <TournamentsDropdown tournaments={cups} key="2">
                 <Medal className="w-4 h-4 mr-2" />
                 Copa Chile
               </TournamentsDropdown>

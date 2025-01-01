@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { SearchableSelect } from '@/components/searchable-select';
 import Image from 'next/image';
-import { TeamsSection } from '@/components/sections/teams-section';
 
 export default function HomeComponent({ teams, tournaments, cups }) {
   const [selectedTournament, setSelectedTournament] = useState<string>('');
@@ -20,13 +19,13 @@ export default function HomeComponent({ teams, tournaments, cups }) {
 
   const handleTeamChange = (value: string) => {
     setSelectedTeam(value);
-    setSelectedPlayer('');
+    //setSelectedPlayer('');
   };
 
-  const filteredTeams = teams.filter();
-  const filteredPlayers = selectedTeam
-    ? players.filter((player) => player.teamId === parseInt(selectedTeam))
-    : [];
+  const filteredTeams = teams;
+  //const filteredPlayers = selectedTeam
+  //  ? players.filter((player) => player.teamId === parseInt(selectedTeam))
+  //  : [];
 
   const getSelectedData = () => {
     if (selectedPlayer) {
@@ -116,12 +115,15 @@ export default function HomeComponent({ teams, tournaments, cups }) {
                     value={selectedTeam}
                     onValueChange={handleTeamChange}
                     placeholder="Seleccionar Equipo"
-                    items={filteredTeams.map((t) => ({
-                      value: t.name.toString(),
-                      label: t.name,
-                      searchTerms: [t.name],
-                    }))}
-                  />
+                    items={tournaments
+                      .find((t) => t. name ==  selectedTournament)
+                      ?.teams
+                      .map((t) => ({
+                        value: t.toString(),
+                        label: t,
+                        searchTerms: [t, t.toUpperCase(), t.toLowerCase()],
+                      }))}
+                  /> 
                 </div>
               )}
 
