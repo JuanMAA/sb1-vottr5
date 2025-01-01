@@ -111,7 +111,7 @@ export default function TeamsPage() {
     }
   };
 
-  const filteredTeams = teams.filter(team => {
+  const filteredTeams = teams?.filter(team => {
     const matchesSearch = 
       team.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
       team.region.toLowerCase().includes(searchQuery.toLowerCase());
