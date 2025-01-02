@@ -5,10 +5,11 @@ import Image from "next/image";
 interface TeamHeaderProps {
   team: {
     name: string;
-    image: string;
-    stadium: string;
-    founded: string;
+    logo: string;
+    stadium_name: string;
+    foundation_date: string;
     region: string;
+    stadium_image: string;
   };
 }
 
@@ -18,8 +19,8 @@ export function TeamHeader({ team }: TeamHeaderProps) {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src={team.image}
-          alt={team.name}
+          src={team?.stadium_image}
+          alt={team?.name}
           fill
           className="object-cover"
           priority
@@ -32,19 +33,19 @@ export function TeamHeader({ team }: TeamHeaderProps) {
         <div className="flex items-center gap-6 text-white">
           <div className="relative w-20 h-20 rounded-lg overflow-hidden">
             <Image
-              src={team.image}
+              src={"/" + team?.logo ?? '/img/logo.png'}
               alt={`${team.name} logo`}
               fill
-              className="object-cover"
+              className="object-scale-down"
               priority
             />
           </div>
           <div>
             <h1 className="text-4xl font-bold mb-2">{team.name}</h1>
             <div className="flex items-center gap-2 text-white/80">
-              <span>{team.stadium}</span>
+              <span>{team.stadium_name}</span>
               <span>•</span>
-              <span>Fundado en {team.founded}</span>
+              <span>Fundado en {team.foundation_date}</span>
               <span>•</span>
               <span>{team.region}</span>
             </div>

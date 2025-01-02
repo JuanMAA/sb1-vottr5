@@ -5,9 +5,9 @@ import { MapPin, Calendar, Users, Trophy } from "lucide-react";
 
 interface TeamOverviewProps {
   team: {
-    description: string;
-    stadium: string;
-    founded: string;
+    ai_description: string;
+    stadium_name: string;
+    foundation_date: string;
     manager: string;
     titles: number;
   };
@@ -17,7 +17,7 @@ export function TeamOverview({ team }: TeamOverviewProps) {
   return (
     <div className="space-y-6">
       <Card className="p-6">
-        <p className="text-lg leading-relaxed">{team.description}</p>
+        <p className="text-lg leading-relaxed">{team?.ai_description}</p>
       </Card>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -26,7 +26,7 @@ export function TeamOverview({ team }: TeamOverviewProps) {
             <MapPin className="w-4 h-4 text-muted-foreground" />
             <span className="text-sm text-muted-foreground">Estadio</span>
           </div>
-          <div className="font-medium">{team.stadium}</div>
+          <div className="font-medium">{team?.stadium_name}</div>
         </Card>
 
         <Card className="p-4">
@@ -34,7 +34,7 @@ export function TeamOverview({ team }: TeamOverviewProps) {
             <Calendar className="w-4 h-4 text-muted-foreground" />
             <span className="text-sm text-muted-foreground">Fundación</span>
           </div>
-          <div className="font-medium">{team.founded}</div>
+          <div className="font-medium">{team?.foundation_date}</div>
         </Card>
 
         <Card className="p-4">
@@ -42,7 +42,7 @@ export function TeamOverview({ team }: TeamOverviewProps) {
             <Users className="w-4 h-4 text-muted-foreground" />
             <span className="text-sm text-muted-foreground">Director Técnico</span>
           </div>
-          <div className="font-medium">{team.manager}</div>
+          <div className="font-medium">{team?.manager}</div>
         </Card>
 
         <Card className="p-4">
@@ -50,7 +50,7 @@ export function TeamOverview({ team }: TeamOverviewProps) {
             <Trophy className="w-4 h-4 text-muted-foreground" />
             <span className="text-sm text-muted-foreground">Títulos</span>
           </div>
-          <div className="font-medium">{team.titles}</div>
+          <div className="font-medium">{team?.name}</div>
         </Card>
       </div>
     </div>

@@ -60,7 +60,7 @@ export function TeamsDropdown({ children, teams }: TeamsDropdownProps) {
                 {filteredTeams.slice(0, 9).map((team) => (
                   <NavigationMenuLink asChild key={team.id}>
                     <a
-                      href={`/equipos/${team.name}`}
+                      href={`/equipos/${encodeURIComponent(team.name)}`}
                       className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-accent group"
                     >
                       <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0">

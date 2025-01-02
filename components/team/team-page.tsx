@@ -11,7 +11,7 @@ import { TeamHeader } from "@/components/team/team-header";
 import type { Team } from "@/lib/teams-data";
 
 interface TeamPageProps {
-  team: Team;
+  team;
 }
 
 export function TeamPage({ team }: TeamPageProps) {
@@ -23,9 +23,9 @@ export function TeamPage({ team }: TeamPageProps) {
       
       <div className="container py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="overview">General</TabsTrigger>
-            <TabsTrigger value="squad">Plantilla</TabsTrigger>
+            {/* <TabsTrigger value="squad">Plantilla</TabsTrigger> */}
             <TabsTrigger value="stats">Estadísticas</TabsTrigger>
             <TabsTrigger value="tournaments">Torneos</TabsTrigger>
             <TabsTrigger value="trophies">Palmarés</TabsTrigger>
